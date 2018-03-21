@@ -27,7 +27,7 @@ class LogEvent
    */
   error(message)
   {
-    this.event('error', { message });
+    return this.event('error', { message });
   }
 
   /**
@@ -51,7 +51,7 @@ class LogEvent
 
   nodeRequest(data, resolve, reject)
   {
-    let params = encodeURIComponent(JSON.stringify(data));
+    const { URL } = require('url');
 
     let url = new URL(this.url);
     let protocol = url.protocol.replace(':', '');
@@ -64,12 +64,10 @@ class LogEvent
       hostname: url.hostname,
       port: url.port,
       path: url.pathname,
-      method,
+      method: 'POST',
       headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
+        'Content-Type': 'application/json'
       },
-      agent: keepAliveAgent,
-      timeout: 1000,
       checkServerIdentity: function (host, cert) {
         return undefined;
       }
@@ -98,7 +96,7 @@ class LogEvent
        status: e
      });
     });
-    req.end();
+    req.end(JSON.stringify(data));
   }
 
   browserRequest(data, resolve, reject)
@@ -107,7 +105,7 @@ class LogEvent
     req.open('POST', this.url, true);
 
     // Send the proper header information along with the request.
-    req.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    req.setRequestHeader('Content-type', 'application/json');
     req.withCredentials = true;
     req.onreadystatechange = () => {
       if (req.readyState == 4 && req.status == 200) {
@@ -120,7 +118,7 @@ class LogEvent
         });
       }
     }
-    req.send(encodeURIComponent(JSON.stringify(data)));
+    req.send(JSON.stringify(data));
   }
 };
 
