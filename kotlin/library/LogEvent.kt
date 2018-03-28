@@ -1,7 +1,7 @@
 // Copyright 2018 Sourcerer Inc. All Rights Reserved.
 // Author: Alexander Surkov (alex@sourcerer.io)
 
-package sourcererio.vacuumanalytics
+package vacuumanalytics
 
 import com.github.kittinunf.fuel.core.FuelError
 import com.github.kittinunf.fuel.core.FuelManager

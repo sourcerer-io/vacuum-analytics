@@ -1,0 +1,45 @@
+// Copyright 2018 Sourcerer Inc. All Rights Reserved.
+
+buildscript {
+    ext {
+        kotlin_version = '1.1.51'
+    }
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
+apply plugin: "java"
+apply plugin: "kotlin"
+sourceSets {
+    main.java.srcDirs += 'src/main/'
+}
+
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+dependencies {
+    compile project(':library')
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlin_version"
+    /*compile "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"*/
+}
+
+compileKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+}
+
+jar {
+    manifest {
+        attributes "Main-Class": "sample.MainKt"
+    }
+
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+
+    baseName 'sample'
+}
