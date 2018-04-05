@@ -1,1 +1,5 @@
 .gradle/
+.idea/
+kotlin/sample/build/
+kotlin/library/build/
+kotlin/build/
