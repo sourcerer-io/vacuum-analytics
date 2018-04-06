@@ -1,0 +1,14 @@
+{
+  "name": "va-sample",
+  "version": "0.0.1",
+  "description": "Vacuum Analytics Examples",
+  "author": "Alexander Surkov <alex@sourcerer.io>",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "start": "node simple.js"
+  },
+  "dependencies": {
+    "va": "file:../../library",
+  }
+}

@@ -1,0 +1,27 @@
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=2.0, user-scalable=yes" />
+<title>Vacuum Analytics Example</title>
+
+<script src="../../library/LogEvent.js"></script>
+<script>
+const logging_url = 'http://0.0.0.0:8080';
+
+const logger = new LogEvent(
+  logging_url,
+  { 'headers' : { 'set-cookie': 'sessionid=bmomob;' } }
+);
+
+logger.error("B'eba-%pBeba").
+then(
+  () => { console.log('done'); document.body.textContent = 'done'; },
+  (e) => { console.log(e); document.body.textContent = 'error'; }
+);
+</script>
+</head>
+
+<body>
+</body>
+</html>

@@ -1,0 +1,15 @@
+{
+  "name": "va-library",
+  "version": "0.0.1",
+  "description": "Vacuum Analytics Library",
+  "author": "Alexander Surkov <alex@sourcerer.io>",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:sourcerer-io/vacuum-analytics.git"
+  },
+  "license": "MIT",
+  "private": false,
+  "main" : "LogEvent.js",
+  "dependencies": {
+  }
+}
